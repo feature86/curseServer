@@ -1,0 +1,38 @@
+{
+  "name": "curseServer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:feature86/curseServer.git",
+  "author": "Paul Picher <paul@picher.cc>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/node": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-proposal-decorators": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-typescript": "^7.10.1",
+    "@babel/runtime-corejs3": "^7.10.2",
+    "@types/node": "^14.14.6",
+    "@typescript-eslint/eslint-plugin": "^4.6.1",
+    "@typescript-eslint/parser": "^4.6.1",
+    "eslint": "^7.12.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "6.10.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "3.1.2",
+    "nodemon": "^2.0.6",
+    "prettier": "2.0.1",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "mongoose": "^5.11.17"
+  },
+  "scripts": {
+    "start": "ts-node --compiler-options '{ \"module\": \"commonjs\" }' ./src/index.ts",
+    "lint:ts": "eslint 'src/**/*.ts{,x}'"
+  }
+}

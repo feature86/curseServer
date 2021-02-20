@@ -1,0 +1,11 @@
+node_modules
+build
+dec
+*.log
+.vscode
+.idea
+.cache
+tsconfig.tsbuildinfo
+dist
+out/*
+!out/.gitkeep
