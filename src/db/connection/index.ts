@@ -1,13 +1,37 @@
-import mongoose, { Mongoose } from 'mongoose';
+import mongoose from 'mongoose';
 
-export const createConnection: mongoose.Connection = (url: string) => {
-  mongoose.connect(url);
-  const db = mongoose.connection;
+const connect = (db: string) => {
+  const con: null | typeof mongoose = null;
+  try {
+    mongoose
+      .connect(db, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      })
+      .then(() => {
+        return console.info(`Successfully connected to ${db}`);
+      })
+      .catch((error) => {
+        throw new Error(error);
+      });
+  } catch (err) {
+    console.log('Error on connection', err);
+    process.exit(1);
+  }
 
-  db.on('error', console.error.bind(console, 'connection error'));
-  db.once('open', function callback() {
-    console.log('Connection with database succeeded.');
+  mongoose.connection.once('connected', () => {
+    console.log('DB Connection established');
   });
 
-  return db;
+  return con;
+};
+
+export const createConnection = async (url: string): Promise<void> => {
+  connect(url);
+
+  mongoose.connection.on('disconnected', () => {
+    console.log('Connection closed, will recreated it!');
+    connect(url);
+  });
+  return;
 };

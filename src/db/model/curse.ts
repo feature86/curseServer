@@ -1,16 +1,21 @@
-import mongoose from 'mongoose';
+import {
+  model,
+  Schema,
+  SchemaDefinition,
+  SchemaTypes,
+  Document,
+} from 'mongoose';
 
-export interface CurseEntry extends mongoose.Document {
+export interface ICurse extends Document {
   person: string;
   date: Date;
 }
 
-const schema: mongoose.SchemaDefinition = {
-  person: { type: mongoose.SchemaTypes.String, required: true },
-  date: { type: mongoose.SchemaTypes.Date, required: true },
+const schema: SchemaDefinition = {
+  person: { type: SchemaTypes.String, required: true },
+  date: { type: SchemaTypes.Date, required: true },
 };
 
-const collectionName = 'curse';
-const curseSchema = new mongoose.Schema(schema);
+const curseSchema = new Schema(schema);
 
-export default mongoose.model<CurseEntry>('Curse', curseSchema);
+export default model<ICurse>('Curse', curseSchema);
