@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import mongoose from 'mongoose';
 
 const connect = (db: string) => {
@@ -9,7 +10,7 @@ const connect = (db: string) => {
         useUnifiedTopology: true,
       })
       .then(() => {
-        return console.info(`Successfully connected to ${db}`);
+        return console.log(`Successfully connected to ${db}`);
       })
       .catch((error) => {
         throw new Error(error);

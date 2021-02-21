@@ -3,12 +3,10 @@
 
 import dotenv from 'dotenv';
 import { createConnection } from './db/connection';
-import Curse, { ICurse } from './db/model/curse';
+import Curse from './db/model/curse';
 import express, { Request, Response } from 'express';
 import path from 'path';
 import fs from 'fs';
-import curse from './db/model/curse';
-import { createCipher } from 'crypto';
 
 const ENVFILE = '.env';
 
@@ -47,7 +45,7 @@ const main = async () => {
 
   srv.post('/curse/create', async (req: Request, res: Response) => {
     try {
-      const newCurse = await Curse.create({
+      await Curse.create({
         person: req.body.person,
         date: req.body.date,
       });
