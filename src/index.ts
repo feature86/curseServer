@@ -48,17 +48,18 @@ const main = async () => {
   });
 
   srv.post('/curse', async (req: Request, res: Response) => {
+    const now = new Date();
     try {
       await Curse.create({
         person: req.body.person,
-        date: req.body.date,
+        date: now,
       });
     } catch (e) {
       res.statusCode = 500;
       res.json({ error: e });
     }
 
-    res.json(new Date().getTime());
+    res.json(now.getTime());
   });
 
   srv.get('/curse/list/:person', async (req: Request, res: Response) => {
